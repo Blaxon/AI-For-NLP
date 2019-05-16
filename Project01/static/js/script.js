@@ -1,9 +1,9 @@
 $(function(){
 	$('button').click(function(){
-		var user = $('#txtUsername').val();
-		var pass = $('#txtPassword').val();
+//		var user = $('#txtUsername').val();
+//		var pass = $('#txtPassword').val();
 		$.ajax({
-			url: '/signUpUser',
+			url: '/findwhotalk',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
