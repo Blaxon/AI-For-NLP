@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=2">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
@@ -17,7 +17,7 @@
     <link href="static/css/signin.css" rel="stylesheet">
 
    <script src="static/js/jquery-1.9.0.js"></script>
-   <script src="static/js/script.js"></script>
+   <!--<script src="static/js/script.js"></script>-->
 
   </head>
 
@@ -26,16 +26,26 @@
     <div class="container">
 
       <form class="form-signin"  role="form">
-        <h2 class="form-signin-heading">Please Sign Up</h2>
-        <input type="email" id="txtUsername" name="username" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" id="txtPassword" name="password" class="form-control" placeholder="Password" required>
-
+        <h2 class="form-signin-heading">Please copy the document in here</h2>
+        <!--<input type="email" id="txtUsername" name="username" class="form-control" placeholder="Email address" required autofocus>-->
+        <!--<input type="password" id="txtPassword" name="password" class="form-control" placeholder="Password" required>-->
+        <!--<label for="exampleFormControlTextarea1">Input the Text here</label>-->
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="document"></textarea>
         <button class="btn btn-lg btn-primary btn-block" type="button">Register</button>
+        <div id="marked" class="form-signin">
+            <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+            <p><del>This line of text is meant to be treated as deleted text.</del></p>
+            <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+            <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+            <p><u>This line of text will render as underlined</u></p>
+            <p><small>This line of text is meant to be treated as fine print.</small></p>
+            <p><strong>This line rendered as bold text.</strong></p>
+            <p><em>This line rendered as italicized text.</em></p>
+        </div>
       </form>
 
-
-
     </div> <!-- /container -->
+
 
 
     <!-- Bootstrap core JavaScript
@@ -43,3 +53,24 @@
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
+
+<script>
+$(function(){
+$('button').click(function(){
+//		var user = $('#txtUsername').val();
+//		var pass = $('#txtPassword').val();
+		$.ajax({
+			url: '/findwhotalk',
+			data: $('form').serialize(),
+			type: 'POST',
+			success: function(response){
+				console.log(response);
+				$('#marked').html(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
+</script>
