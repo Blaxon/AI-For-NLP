@@ -25,6 +25,7 @@ def findwhotalk():
     wt = Whotalk()
     whodic, markeddoc = wt.checkwhotalk(content, whostart='<strong class="text-danger">', whoend='</strong>', talkstart='<mark>', talkend='</mark>')
     print('get dic:', whodic)
+    wt.release()  # must release
 
     return '<p>' + markeddoc + '</p>'
 
