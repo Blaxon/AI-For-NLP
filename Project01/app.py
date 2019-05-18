@@ -20,11 +20,18 @@ def hello_world():
 @app.route('/findwhotalk', methods=['POST'])
 def findwhotalk():
     content = request.form['document']
-    # print('I get post request:', content)
+    parsername = request.form['parsername']
+    # print('I get post request:', request.form['parsername'])
 
-    wt = Whotalk()
+    if parsername == 'xh':
+        wt = Whotalk()
+    elif parsername == 'syf':
+        wt = If()
+    else:
+        return "sorry incorrect parsername"
+
     whodic, markeddoc = wt.checkwhotalk(content, whostart='<strong class="text-danger">', whoend='</strong>', talkstart='<mark>', talkend='</mark>')
-    print('get dic:', whodic)
+    # print('get dic:', whodic)
     wt.release()  # must release
 
     return '<p>' + markeddoc + '</p>'

@@ -24,14 +24,16 @@
   <body>
 
     <div class="container">
-
       <form class="form-signin"  role="form">
+          <h1>Find Who Talk</h1>
+          <br><br>
         <h2 class="form-signin-heading">Please copy the document in here</h2>
         <!--<input type="email" id="txtUsername" name="username" class="form-control" placeholder="Email address" required autofocus>-->
         <!--<input type="password" id="txtPassword" name="password" class="form-control" placeholder="Password" required>-->
         <!--<label for="exampleFormControlTextarea1">Input the Text here</label>-->
         <textarea class="form-control" id="exampleFormControlTextarea1" name="document"></textarea>
-        <button class="btn btn-lg btn-primary btn-block" type="button">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" id="xh" type="button">Click to use Xiang's Parser</button>
+        <button class="btn btn-lg btn-primary btn-block"  id="syf" type="button">Click to use If's Parser </button>
         <div id="marked" class="form-signin">
             <p>You can use the mark tag to <mark>highlight</mark> text.</p>
             <p><del>This line of text is meant to be treated as deleted text.</del></p>
@@ -47,7 +49,6 @@
     </div> <!-- /container -->
 
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -61,7 +62,7 @@ $('button').click(function(){
 //		var pass = $('#txtPassword').val();
 		$.ajax({
 			url: '/findwhotalk',
-			data: $('form').serialize(),
+			data: $('form').serialize() + "&parsername=" + $(this).prop("id"),
 			type: 'POST',
 			success: function(response){
 				console.log(response);
